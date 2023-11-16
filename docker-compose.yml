@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: app/Dockerfile
+    ports:
+      - "8000:80"
+    depends_on:
+      - localstack
+    environment:
+      - MODULE_NAME=main
+      - VARIABLE_NAME=app
+      - AWS_DEFAULT_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_SQS_ENDPOINT=http://localstack:4566
+      - AWS_SNS_ENDPOINT=http://localstack:4566
+  localstack:
+    image: localstack/localstack
+    ports:
+      - "4566:4566"
+      - "4571:4571"
+    environment:
+      - SERVICES=sqs,sns,s3
