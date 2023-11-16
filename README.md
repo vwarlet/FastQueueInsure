@@ -1,3 +1,8 @@
+# Fast Queue Insure
+Projetinho utilizando FastAPI, Localstack, SQL, SNS
+
+## Execução
+
 Iniciar o container
 ```
 docker-compose up --build
@@ -13,8 +18,7 @@ curl -X POST -H "Content-Type: multipart/form-data" \
 http://localhost:8000/contratacao
 ```
 
-Sendo http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/minha-fila a URL da fila
-comando para visualizar a mensagem enviada
+Comando para visualizar a mensagem enviada
 ``` 
-aws --endpoint-url=http://localhost:4566 sqs receive-message --queue-url http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/minha-fila
-```# FastQueueInsure
+aws --endpoint-url=http://localhost:4566 sqs receive-message --queue-url <URL da Fila>
+```
